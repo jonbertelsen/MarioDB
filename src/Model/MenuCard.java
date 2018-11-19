@@ -4,11 +4,11 @@ import Datamappers.MenuMapper;
 
 import java.util.ArrayList;
 
-public class Menu {
+public class MenuCard {
     private ArrayList<Pizza> menuCard = null;
     private MenuMapper menuMapper;
 
-    public Menu() {
+    public MenuCard() {
         menuMapper = new MenuMapper();
         loadMenu();
 
@@ -18,14 +18,13 @@ public class Menu {
         return menuCard;
     }
 
-    public void loadMenu(){
+    private void loadMenu(){
         menuCard = menuMapper.getMenuItems();
     }
 
     public Pizza getMenuItemById(int id){
 
-        Pizza pizza = menuMapper.getMenuItemById(id);
-        return pizza;
+        return menuMapper.getMenuItemById(id);
     }
 
 }
