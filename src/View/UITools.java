@@ -1,6 +1,7 @@
 package View;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class UITools {
 
@@ -8,13 +9,17 @@ public class UITools {
 
     public static int getInputNumber(String s) {
 
-        int svar = 9;
+        String regExPattern = "\\b\\d\\b"; // et-cifret tal
+        int svar;
+        boolean matches;
 
         System.out.print(s);
-        try {
-            svar = Integer.parseInt(scanner.nextLine());
-        } catch (Exception e){
-            e.printStackTrace();
+        String inputText = scanner.nextLine();
+        matches = Pattern.matches(regExPattern,inputText);
+        if (matches){
+            svar = Integer.parseInt(inputText);
+        } else {
+            svar = 9;
         }
         return svar;
     }

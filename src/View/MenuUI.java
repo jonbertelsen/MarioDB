@@ -5,7 +5,7 @@ import Model.Pizza;
 
 import java.util.Scanner;
 
-public class MainMenu {
+public class MenuUI {
 
     public static void showMainMenu(){
         System.out.println("************************************************");
