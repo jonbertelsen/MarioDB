@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Menu;
+import Model.MenuCard;
 import View.MenuUI;
 import View.PizzaUI;
 import View.UITools;
@@ -8,9 +8,9 @@ import View.UITools;
 public class MainController {
 
     public static void mainControlLoop() {
-        Menu menuCard = new Menu();
+        MenuCard menuCard = new MenuCard();
 
-        // ***** Menu ******* //
+        // ***** MenuCard ******* //
         int choice = 0;
         int pizzaID;
 
