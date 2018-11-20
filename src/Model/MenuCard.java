@@ -11,7 +11,6 @@ public class MenuCard {
     public MenuCard() {
         menuMapper = new MenuMapper();
         loadMenu();
-
     }
 
     public ArrayList<Pizza> getMenuCard() {

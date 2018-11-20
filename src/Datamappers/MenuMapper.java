@@ -1,10 +1,9 @@
 package Datamappers;
 
 import Model.Pizza;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import Util.ConnectionConfiguration;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 public class MenuMapper implements IMenu {
@@ -34,9 +33,9 @@ public class MenuMapper implements IMenu {
                 menuCard.add(pizza);
             }
 
-            } catch (Exception e){
-                e.printStackTrace();
-            } finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
@@ -61,15 +60,56 @@ public class MenuMapper implements IMenu {
         }
 
 
-
         return menuCard;
     }
 
     @Override
     public Pizza getMenuItemById(int pizzaID) {
 
-        // Skal kodes: hent pizza fra DB med pizza_id = pizzaID og returner et pizza-objekt med indholdet
+        Connection connection = null;
+        Pizza pizza = null;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        String sqlQuery = "SELECT * FROM pizza where pizza_id = ?";
 
-        return new Pizza(42,"Magaritha", "Tomat, ost og oregano",51);
+        try {
+            connection = ConnectionConfiguration.getConnection();
+            ps = connection.prepareStatement(sqlQuery);
+            ps.setInt(1, pizzaID);
+            resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                pizzaID = resultSet.getInt("pizza_id");
+                String pizzaName = resultSet.getString("name");
+                String ingredients = resultSet.getString("ingredients");
+                int price = resultSet.getInt("price");
+                pizza = new Pizza(pizzaID, pizzaName, ingredients, price);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return pizza;
     }
 }

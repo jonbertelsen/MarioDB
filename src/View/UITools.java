@@ -9,7 +9,7 @@ public class UITools {
 
     public static int getInputNumber(String s) {
 
-        String regExPattern = "\\b\\d\\b"; // et-cifret tal
+        String regExPattern = "\\b\\d{1,2}\\b"; // et-cifret tal
         int svar;
         boolean matches;
 

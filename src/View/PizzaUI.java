@@ -15,6 +15,11 @@ public class PizzaUI {
     }
 
     public static void viewPizza(Pizza pizzaObject) {
-        System.out.println(pizzaObject.toString());
+        if (pizzaObject != null) {
+            System.out.println(pizzaObject.toString());
+        } else
+        {
+            System.out.println("Der findes ikke en pizza med det nummer din tosse!");
+        }
     }
 }
