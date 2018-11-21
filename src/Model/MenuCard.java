@@ -5,6 +5,7 @@ import Datamappers.MenuMapper;
 import java.util.ArrayList;
 
 public class MenuCard {
+
     private ArrayList<Pizza> menuCard = null;
     private MenuMapper menuMapper;
 
