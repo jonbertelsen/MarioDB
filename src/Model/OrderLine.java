@@ -7,6 +7,10 @@ public class OrderLine {
     private int amount;
     private int totalPrice;
 
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
     public int getOrderID() {
         return orderID;
     }

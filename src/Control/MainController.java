@@ -1,5 +1,6 @@
 package Control;
 
+import Datamappers.OrderMapper;
 import Model.MenuCard;
 import Model.Order;
 import Model.OrderLine;
@@ -15,6 +16,7 @@ public class MainController {
 
         MenuCard menuCard = new MenuCard();
         ArrayList<Order> orderList = new ArrayList<>();
+        OrderMapper orderMapper = new OrderMapper();
 
         // ***** MenuCard ******* //
         int choice = 0;
@@ -36,9 +38,12 @@ public class MainController {
                     order.insertOrderLine(new OrderLine(0,11,3,183));
                     order.insertOrderLine(new OrderLine(0,2,1,53));
                     orderList.add(order);
+                    orderMapper.createOrder(order);  // Insert order into DB
                     order = new Order(0,1930,2);
                     order.insertOrderLine(new OrderLine(0,1,2,114));
                     orderList.add(order);
+                    orderMapper.createOrder(order);  // Insert order into DB
+
                     System.out.println("Ordre indsat");
                     break;
                 case 4:
